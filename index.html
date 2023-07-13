@@ -6,24 +6,41 @@
 <>
     <h1>Bem-vindo ao nosso site de compras</h1>
 
+    <form id="login-form">
+        <input type="text" id="username" placehold="Nome de Usuário" required>
+        <input type="password" id="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+    </form>
+    
+    <div id="content" style="display: nome;">
     <h2>Produtos</h2>
-<ul>
-
-    <li> Product Name 1 - $10.00</li>
-    <li> Product Name 2 - $20.00</li>
-    <li> Product Name 3 - $30.00</li>
+<ul id="product-list">
+    <li> Product Name 1 - $10.00 <button onclick="addToCart('Nome do Produto 1', 10.00)">Adicionar ao Carrinho</button> </li>
+    <li> Product Name 2 - $20.00 <button onclick="addToCart('Nome do Produto 2', 20.00)">Adicionar ao Carrinho</button></li>
+    <li> Product Name 3 - $30.00 <button onclick="addToCart('Nome do Produto 3', 30.00)">Adicionar ao Carrinho</button></li>
 </ul>
 <h2>Carrinho de Compras</h2>
-<ul id="cart-items"></ul>
-
+<ul id="cart-items">
+    </ul>
 <h3>Total: $<spam id="cart-total">0.00</spam></h3>
 
-<button onclick="addToCart('Product name 1', 10.00)">Adicionar ao Carrinho</button>
-<button onclick="addToCart('Product name 2', 20.00)">Adicionar ao Carrinho</button>
-<button onclick="addToCart('Product name 3', 30.00)">Adicionar ao Carrinho</button>
-
+        <button onclick="checkout()">Finalizar Compra</button>
+    </div>
 <script>
     var cartItems = [];
+
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var username = document.getElementById('Username').value;
+        var password = document.getElementById('Password').values;
+
+        if(username === 'admin' && password === 'password') {
+            document.getElementById('login-form').style.display = 'nome';
+            document.getElementById('content').style.display = 'block';
+        } else {
+            alert('Usuário ou senha incorretos');
+        }
+    });
 
     function addToCart(name, price) {
         var item = { name: name, price: price };
@@ -39,6 +56,13 @@
         var total = parseFloat(cartTotal.innerHTML);
         total += price;
         cartTotal.innerHTML = total.toFixed(2);
+    }
+
+    function checkout() {
+        alert('Compra finalizada com sucesso!');
+        cartItems = [];
+        document.getElementById('Cart-items').innerHTML = '';
+        document.getElementyById(cart-total).innerHTML = '0.00';
     }
     </script>
 </body>
